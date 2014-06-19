@@ -205,29 +205,29 @@ angular.module('angucomplete', [] )
                     if ($scope.results && ($scope.currentIndex + 1) < $scope.results.length) {
                         $scope.currentIndex ++;
                         $scope.$apply();
-                        event.preventDefault;
+                        event.preventDefault();
                         event.stopPropagation();
                     }
 
                     $scope.$apply();
-                } else if(event.which == KEY_UP) {
+                } else if(event.which === KEY_UP) {
                     if ($scope.currentIndex >= 1) {
                         $scope.currentIndex --;
                         $scope.$apply();
-                        event.preventDefault;
+                        event.preventDefault();
                         event.stopPropagation();
                     }
 
-                } else if (event.which == KEY_RETURN) {
+                } else if (event.which === KEY_RETURN) {
                     if ($scope.results && $scope.currentIndex >= 0 && $scope.currentIndex < $scope.results.length) {
                         $scope.selectResult($scope.results[$scope.currentIndex]);
                         $scope.$apply();
-                        event.preventDefault;
+                        event.preventDefault();
                         event.stopPropagation();
                     } else {
                         $scope.results = [];
                         $scope.$apply();
-                        event.preventDefault;
+                        event.preventDefault();
                         event.stopPropagation();
                     }
 
