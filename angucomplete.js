@@ -160,28 +160,29 @@ angular.module('angucomplete', [] )
             }
 
             $scope.keyPressed = function(event) {
-                if (!(event.which == KEY_UP || event.which == KEY_DOWN || event.which == KEY_RETURN)) {
-                    if (!$scope.searchStr || $scope.searchStr == "") {
-                        $scope.showDropdown = false;
-                        $scope.lastSearchTerm = null
-                    } else if (isNewSearchNeeded($scope.searchStr, $scope.lastSearchTerm)) {
-                        $scope.lastSearchTerm = $scope.searchStr
-                        $scope.showDropdown = true;
-                        $scope.currentIndex = -1;
-                        $scope.results = [];
-
-                        if ($scope.searchTimer) {
-                            $timeout.cancel($scope.searchTimer);
-                        }
-
-                        $scope.searching = true;
-
-                        $scope.searchTimer = $timeout(function() {
-                            $scope.searchTimerComplete($scope.searchStr);
-                        }, $scope.pause);
-                    }
-                } else {
+                if (event.which == KEY_UP || event.which == KEY_DOWN || event.which == KEY_RETURN) {
                     event.preventDefault();
+                    return;
+                }
+
+                if (!$scope.searchStr || $scope.searchStr == "") {
+                    $scope.showDropdown = false;
+                    $scope.lastSearchTerm = null
+                } else if (isNewSearchNeeded($scope.searchStr, $scope.lastSearchTerm)) {
+                    $scope.lastSearchTerm = $scope.searchStr
+                    $scope.showDropdown = true;
+                    $scope.currentIndex = -1;
+                    $scope.results = [];
+
+                    if ($scope.searchTimer) {
+                        $timeout.cancel($scope.searchTimer);
+                    }
+
+                    $scope.searching = true;
+
+                    $scope.searchTimer = $timeout(function() {
+                        $scope.searchTimerComplete($scope.searchStr);
+                    }, $scope.pause);
                 }
             }
 
